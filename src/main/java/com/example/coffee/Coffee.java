@@ -1,3 +1,5 @@
+package com.example.coffee;
+
 import java.util.List;
 
 public class Coffee {
