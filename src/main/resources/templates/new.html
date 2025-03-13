@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Coffee</title>
+</head>
+<body>
+<h2>Add New Coffee</h2>
+<form action="/save" method="post">
+    <label>Coffee Name: <input type="text" name="name" required></label><br>
+    <label>Type: <input type="text" name="type" required></label><br>
+    <label>Size:
+        <select name="size" required>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </label><br>
+    <label>Price: <input type="number" name="price" step="0.01" required></label><br>
+    <button type="submit">Add Coffee</button>
+</form>
+<a href="/">Back to List</a>
+</body>
+</html>

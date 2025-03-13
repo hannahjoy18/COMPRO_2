@@ -1,0 +1,31 @@
+<form action="/update" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+  <input type="hidden" name="id" th:value="${coffee.id}">
+
+
+  <label>Coffee Name:
+    <input type="text" name="name" th:value="${coffee.name}" required>
+  </label><br>
+
+
+  <label>Type:
+    <input type="text" name="type" th:value="${coffee.type}" required>
+  </label><br>
+
+
+  <label>Size:
+    <select name="size" required>
+      <option value="Small" th:selected="${coffee.size == 'Small'}">Small</option>
+      <option value="Medium" th:selected="${coffee.size == 'Medium'}">Medium</option>
+      <option value="Large" th:selected="${coffee.size == 'Large'}">Large</option>
+    </select>
+  </label><br>
+
+
+  <label>Price:
+    <input type="number" name="price" th:value="${coffee.price}" step="0.01" required>
+  </label><br>
+
+
+  <button type="submit">Update Coffee</button>
+</form>
+<a href="/">Back to List</a>
