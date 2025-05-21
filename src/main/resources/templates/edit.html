@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Coffee</title>
+    <style>
+        :root {
+            --background-color: #FAEBD7;
+            --text-color: #6B3F2A;
+            --form-bg: #FFF8E1;
+            --input-bg: #F3E5AB;
+            --border-color: #8B4513;
+            --button-bg: #A0522D;
+            --button-hover: #8B4513;
+            --link-color: #6B3F2A;
+            --link-hover: #8B4513;
+            --border-radius: 12px;
+            --padding: 12px;
+            --margin: 20px;
+            --font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            font-family: var(--font-family);
+            margin: var(--margin);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: var(--margin);
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            background-color: var(--form-bg);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
+        }
+
+        label {
+            display: block;
+            margin: var(--padding) 0;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: var(--padding);
+            margin-top: 5px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: var(--border-radius);
+            font-size: 1em;
+        }
+
+        button {
+            margin-top: var(--margin);
+            padding: var(--padding) 20px;
+            background-color: var(--button-bg);
+            color: #FFF;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            margin-top: var(--margin);
+            font-size: 1.2em;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Update Coffee</h1>
+
+<form action="/update" method="post" id="coffeeForm">
+    <input type="hidden" name="id" th:value="${coffee.id}">
+
+    <!-- 1. name -->
+    <label>
+        Name:
+        <input type="text" name="name"
+               th:value="${coffee.name}"
+               required minlength="2" maxlength="50">
+    </label>
+
+    <!-- 2. type -->
+    <label>
+        Type:
+        <select name="type" required>
+            <option value="">— select type —</option>
+            <option th:selected="${coffee.type=='Arabica'}">Arabica</option>
+            <option th:selected="${coffee.type=='Robusta'}">Robusta</option>
+        </select>
+    </label>
+
+    <!-- 3. size -->
+    <label>
+        Size:
+        <select name="size" required>
+            <option value="">— select size —</option>
+            <option th:selected="${coffee.size=='Small'}">Small</option>
+            <option th:selected="${coffee.size=='Medium'}">Medium</option>
+            <option th:selected="${coffee.size=='Large'}">Large</option>
+        </select>
+    </label>
+
+    <!-- 4. price -->
+    <label>
+        Price:
+        <input type="number" name="price"
+               th:value="${coffee.price}"
+               required min="0.01" step="0.01">
+    </label>
+
+    <!-- 5. roastLevel -->
+    <label>
+        Roast Level:
+        <select name="roastLevel" required>
+            <option value="">— select roast —</option>
+            <option th:selected="${coffee.roastLevel=='Light'}">Light</option>
+            <option th:selected="${coffee.roastLevel=='Medium'}">Medium</option>
+            <option th:selected="${coffee.roastLevel=='Dark'}">Dark</option>
+        </select>
+    </label>
+
+    <!-- 6. origin -->
+    <label>
+        Origin:
+        <input type="text" name="origin"
+               th:value="${coffee.origin}"
+               maxlength="100">
+    </label>
+
+    <!-- 7. isDecaf -->
+    <label>
+        Decaf?
+        <select name="isDecaf">
+            <option value="false" th:selected="${!coffee.isDecaf}">No</option>
+            <option value="true" th:selected="${coffee.isDecaf}">Yes</option>
+        </select>
+    </label>
+
+    <!-- 8. stock -->
+    <label>
+        Stock:
+        <input type="number" name="stock"
+               th:value="${coffee.stock}"
+               required min="0">
+    </label>
+
+    <!-- 9. flavorNotes (dynamic) -->
+    <fieldset>
+        <legend>Flavor Notes (optional)</legend>
+        <label th:each="note : ${allFlavorOptions}">
+            <input type="checkbox"
+                   name="flavorNotes"
+                   th:value="${note}"
+                   th:checked="${coffee.flavorNotes.contains(note)}">
+            <span th:text="${note}">Note</span>
+        </label>
+    </fieldset>
+
+    <!-- 10. brewMethod -->
+    <label>
+        Brew Method:
+        <select name="brewMethod" required>
+            <option value="">— select method —</option>
+            <option th:selected="${coffee.brewMethod=='Drip'}">Drip</option>
+            <option th:selected="${coffee.brewMethod=='French Press'}">French Press</option>
+            <option th:selected="${coffee.brewMethod=='Espresso'}">Espresso</option>
+        </select>
+    </label>
+
+    <button type="submit">Update Coffee</button>
+
+</form>
+
+<a href="/">Back to List</a>
+
+</body>
+</html>

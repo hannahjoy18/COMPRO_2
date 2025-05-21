@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Coffee Shop</title>
+    <style>
+        :root {
+            --background-color: #FAEBD7;
+            --text-color: #6B3F2A;
+            --table-bg: #FFF8E1;
+            --table-header-bg: #A0522D;
+            --table-header-text: #FFF;
+            --table-row-even: #FFF5E1;
+            --table-row-odd: #F4E1C1;
+            --button-bg: #A0522D;
+            --button-hover: #8B4513;
+            --input-bg: #F3E5AB;
+            --input-border: #6B3F2A;
+            --link-color: #6B3F2A;
+            --link-hover: #8B4513;
+            --border-color: #8B4513;
+            --border-radius: 12px;
+            --padding: 12px;
+            --margin: 20px;
+            --font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: var(--margin);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: var(--margin);
+            font-size: 24px;
+            text-transform: none;
+            letter-spacing: 2px;
+            font-family: cursive;
+        }
+
+        h2 {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: var(--margin);
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--margin);
+            background-color: var(--table-bg);
+            border: 3px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: var(--padding);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1.1em;
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-even);
+        }
+
+        tr:nth-child(odd) {
+            background-color: var(--table-row-odd);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+            font-weight: bold;
+            font-size: 1em;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: var(--link-hover);
+            color: #FFF;
+        }
+
+        .add-button {
+            display: inline-block;
+            margin-top: var(--margin);
+            padding: var(--padding) 20px;
+            background-color: var(--button-bg);
+            color: #FAF7F0;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: background 0.3s ease;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        .add-button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .search-bar {
+            margin-bottom: var(--margin);
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: var(--padding);
+            width: 50%;
+            border: 2px solid var(--input-border);
+            border-radius: var(--border-radius);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 1em;
+        }
+
+        .search-bar button {
+            padding: var(--padding) 20px;
+            background-color: var(--button-bg);
+            color: #FFF5E1;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--button-hover);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Hannah's Brew & Bloom Cafe</h1>
+<h2>Available Coffees</h2>
+
+<div class="search-bar">
+    <form action="/" method="get">
+        <input type="text" name="search" placeholder="Search for your coffee..." />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>Roast Level</th>
+        <th>Origin</th>
+        <th>Decaf</th>
+        <th>Stock</th>
+        <th>Flavor Notes</th>
+        <th>Brew Method</th>
+        <th>Actions</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="coffee : ${coffees}">
+        <td th:text="${coffee.id}"></td>
+        <td th:text="${coffee.name}"></td>
+        <td th:text="${coffee.type}"></td>
+        <td th:text="${coffee.size}"></td>
+        <td th:text="${coffee.price}"></td>
+        <td th:text="${coffee.roastLevel}"></td>
+        <td th:text="${coffee.origin}"></td>
+        <td th:text="${coffee.decaf} ? 'Yes' : 'No'"></td>
+        <td th:text="${coffee.stock}"></td>
+        <td th:text="${#strings.arrayJoin(coffee.flavorNotes, ', ')}"></td>
+        <td th:text="${coffee.brewMethod}"></td>
+        <td>
+            <a th:href="@{/edit(id=${coffee.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/delete(id=${coffee.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<a href="/add" class="add-button">Add New Coffee</a>
+
+</body>
+</html>
