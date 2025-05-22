@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Details | [[${coffee.name}]]</title>
+    <link rel="stylesheet" href="/css/coffee-detail.css">
+</head>
+<body>
+
+<div class="coffee-card">
+    <div class="coffee-image">
+        <!-- If coffee has an uploaded picture -->
+        <img th:if="${coffee.coffeePicture != null}"
+             th:src="@{'coffee_images/' + ${coffee.coffeePicture}}"
+             alt="Coffee Image">
+
+        <!-- If no picture, fallback to a default image -->
+        <img th:if="${coffee.coffeePicture == null}"
+             th:src="@{'/images/default-coffee.png'}"
+             alt="Default Coffee Image">
+
+        <h2 th:text="${coffee.name}">Coffee Name</h2>
+        <p><strong>Type:</strong> <span th:text="${coffee.type}">Type</span></p>
+        <p><strong>Size:</strong> <span th:text="${coffee.size}">Size</span></p>
+        <p><strong>Price:</strong> ₱<span th:text="${coffee.price}">0.00</span></p>
+    </div>
+
+    <div class="coffee-details">
+        <div><strong>Roast Level:</strong> <span th:text="${coffee.roastLevel}">Roast</span></div>
+        <div><strong>Origin:</strong> <span th:text="${coffee.origin}">Origin</span></div>
+        <div><strong>Decaf:</strong> <span th:text="${coffee.decaf} ? 'Yes' : 'No'">Decaf</span></div>
+        <div><strong>Stock:</strong> <span th:text="${coffee.stock}">0</span></div>
+        <div><strong>Flavor Notes:</strong> <span th:text="${coffee.flavorNotes}">Notes</span></div>
+        <div><strong>Brew Method:</strong> <span th:text="${coffee.brewMethod}">Method</span></div>
+    </div>
+</div>
+
+<a href="/catalog" class="button">Back to Catalog</a>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coffee Catalog</title>
+    <link th:href="@{/css/catalog.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="top">
+        <div class="logo-section">
+            <img th:src="@{/images/coffee_logo.jpg}" alt="Cafe Logo"/>
+            <span>Hannah Bloom's Cafe</span>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a th:href="@{/}">Home &gt;</a></li>
+                <li><a th:href="@{/add}">Add Coffee &gt;</a></li>
+                <li><a th:href="@{/catalog}">Catalog &gt;</a></li>
+                <li><a th:href="@{/login}">Logout &gt;</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+<!-- Main content -->
+<main>
+    <h1>Coffee Catalog</h1>
+    <div class="catalog">
+        <div class="coffee-card" th:each="coffee : ${coffees}">
+            <img th:src="@{/images/{filename}(filename=${coffee.coffeePicture})}" alt="Coffee Image" />
+            <h3 th:text="${coffee.name}">Coffee Name</h3>
+            <p class="price" th:text="${coffee.price} + ' $'">0.00 $</p>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

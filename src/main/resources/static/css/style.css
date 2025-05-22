@@ -1,0 +1,504 @@
+/* Coffee Theme CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+:root {
+    --coffee-dark: #4B2E0E;       /* Dark Coffee Brown */
+    --coffee-medium: #7B4F20;     /* Medium Coffee */
+    --coffee-light: #D2B48C;      /* Light Tan */
+    --cream: #F3E9DC;             /* Cream Background */
+    --accent: #A0522D;            /* Sienna Accent */
+    --text-dark: #3A2E0F;         /* Dark Text */
+    --button-bg: #A97457;         /* Button Brown */
+    --button-hover: #8B5E34;      /* Darker Button */
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--cream);
+}
+
+
+/* Header with coffee cup icon */
+header {
+    background: var(--coffee-dark);
+    color: var(--cream);
+    padding: 15px 20px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Add a coffee cup emoji before header text */
+header p::before {
+    content: "☕ ";
+    margin-right: 8px;
+}
+
+/* Form styling */
+form {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 8px 10px;
+    border: 1px solid var(--coffee-medium);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+button {
+    background: var(--button-bg);
+    border: none;
+    color: var(--cream);
+    padding: 10px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background: var(--button-hover);
+}
+
+a {
+    color: var(--coffee-dark);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: 1px solid var(--coffee-medium);
+    border-radius: 5px;
+    background: var(--coffee-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    background: var(--accent);
+    color: var(--cream);
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--coffee-light);
+    box-shadow: 0 2px 5px rgba(75, 46, 14, 0.3);
+}
+
+th, td {
+    padding: 12px 10px;
+    border: 1px solid var(--coffee-medium);
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--coffee-medium);
+    color: var(--cream);
+    font-weight: 700;
+}
+
+tr:nth-child(even) {
+    background: #e6d3b3;
+}
+
+/* Actions links inside table */
+.actions a {
+    margin-right: 8px;
+    color: var(--coffee-dark);
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+}
+
+.actions a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Login container */
+.login-container {
+    max-width: 350px;
+    background: var(--coffee-light);
+    padding: 35px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.login-container h2 {
+    font-family: 'Pacifico', cursive;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    width: 100%;
+    background: var(--button-bg);
+    color: var(--cream);
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-container button:hover {
+    background: var(--button-hover);
+}
+
+.login-container .links-inline {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.login-container .links-inline a {
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.login-container .links-inline a:hover {
+    text-decoration: underline;
+}
+
+/* Form error message */
+.error {
+    color: #b93e07;
+    font-size: 0.85rem;
+}
+
+/* Form-container shared by add and edit pages */
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: var(--coffee-light);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(75, 46, 14, 0.4);
+}
+
+.form-container h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--coffee-dark);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--coffee-dark);
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--coffee-medium);
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-container input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-left: 8px;
+}
+
+.flavor-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.flavor-group label {
+    background: #c9a675;
+    padding: 6px 10px;
+    border-radius: 20px;
+    color: var(--cream);
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+.flavor-group input[type="checkbox"] {
+    margin-left: 6px;
+    transform: scale(1);
+}
+
+/* Error input highlighting */
+.error {
+    border-color: #b93e07 !important;
+}
+
+.error + .error {
+    color: #b93e07;
+    font-size: 0.85rem;
+    margin-top: -12px;
+    margin-bottom: 12px;
+}
+
+/* Buttons at bottom of form */
+.action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.action button {
+    background: var(--button-bg);
+    padding: 12px 25px;
+    border-radius: 6px;
+    border: none;
+    color: var(--cream);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action button:hover {
+    background: var(--button-hover);
+}
+
+.action .cancel {
+    background: #d3b38a;
+    border: 1px solid var(--coffee-medium);
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: var(--coffee-dark);
+    text-align: center;
+}
+
+.action .cancel:hover {
+    background: var(--accent);
+    color: var(--cream);
+}
+
+/* Responsive tweaks */
+@media (max-width: 650px) {
+    form {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .flavor-group {
+        flex-direction: column;
+    }
+
+    .action {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background: var(--coffee-dark);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.sidebar .top {
+    flex-grow: 1;
+}
+
+.sidebar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cream);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.logo-section img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cream);
+}
+
+.logo-section span {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.2rem;
+}
+
+/* Menu Styling */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    margin-bottom: 18px;
+}
+
+.menu ul li a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    padding: 12px 16px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.menu ul li a:hover {
+    background: var(--accent);
+}
+
+/* User Profile */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+}
+
+.profile img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cream);
+}
+
+.user-profile div h1 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.user-profile div span {
+    font-size: 0.85rem;
+    color: #e0cdbf;
+}
+
+/* Main Content */
+main {
+    margin-left: 280px;
+    padding: 30px;
+    background: var(--cream);
+    min-height: 100vh;
+    color: var(--text-dark);
+}
+
+main h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--coffee-dark);
+}
+
+main p {
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo-section {
+        margin-bottom: 0;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .menu ul li {
+        margin-bottom: 0;
+    }
+
+    .menu ul li a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .user-profile {
+        margin-top: 0;
+        border-top: none;
+        padding-top: 0;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+

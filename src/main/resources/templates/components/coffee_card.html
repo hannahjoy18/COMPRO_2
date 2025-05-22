@@ -1,0 +1,17 @@
+<div th:fragment="coffeeCard(coffee)">
+    <div class="coffee-card">
+        <!-- Coffee image -->
+        <img th:if="${coffee.coffeePicture != null}"
+             th:src="@{'/images/' + ${coffee.coffeePicture}}"
+             alt="Coffee Image" />
+
+        <img th:if="${coffee.coffeePicture == null}"
+             th:src="@{/images/default-coffee.png}"
+             alt="Default Coffee Image" />
+
+        <!-- Coffee name and price only -->
+        <h3 th:text="${coffee.name}">Coffee Name</h3>
+        <p>Price: $<span class="price" th:text="${coffee.price}">Price</span></p>
+    </div>
+</div>
+

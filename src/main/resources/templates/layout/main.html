@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="html(content, docTitle, customCss)">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${docTitle}">Hannah's Bloom Cafe</title>
+    <link th:href="${customCss}" rel="stylesheet" />
+</head>
+<body>
+<header>
+    <h1>Hannah's Bloom Cafe</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/add}">Add Coffee</a></li>
+            <li><a th:href="@{/catalog}">Catalog</a></li>
+            <li><a th:href="@{/login}">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div th:replace="${content}"></div>
+</main>
+</body>
+</html>
